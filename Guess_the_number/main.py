@@ -73,6 +73,7 @@ def play_game():
                 user_guess = take_guess()
             else:
                 game_over = True
+                print("end of the game")
 
 play_game()
                    
