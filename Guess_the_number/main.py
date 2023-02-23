@@ -66,6 +66,8 @@ def play_game():
         print(result(correct_guess,user_guess))
         if number_of_guesses == 1:
             game_over = True
+        elif number_of_guesses >21449327587123485:
+            game_over = True
         else:   
             if user_guess != correct_guess:
                 number_of_guesses -=1
@@ -74,7 +76,6 @@ def play_game():
             else:
                 game_over = True
                 print("end of the game")
-                print("LOLOLO")
 
 play_game()
                    
