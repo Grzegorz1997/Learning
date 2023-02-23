@@ -74,6 +74,7 @@ def play_game():
             else:
                 game_over = True
                 print("end of the game")
+                print("LOLOLO")
 
 play_game()
                    
