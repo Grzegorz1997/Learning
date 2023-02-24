@@ -1,55 +1,22 @@
-MENU = {
-    "espresso": {
-        "ingredients": {
-            "water": 50,
-            "coffee": 18,
-        },
-        "cost": 1.5,
-    },
-    "latte": {
-        "ingredients": {
-            "water": 200,
-            "milk": 150,
-            "coffee": 24,
-        },
-        "cost": 2.5,
-    },
-    "cappuccino": {
-        "ingredients": {
-            "water": 250,
-            "milk": 100,
-            "coffee": 24,
-        },
-        "cost": 3.0,
-    }
-}
+from menu import Menu, MenuItem
+from coffee_maker import CoffeeMaker
+from money_machine import MoneyMachine
 
-resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
-}
+money_machine = MoneyMachine()
+coffee_maker = CoffeeMaker()
+menu = Menu()
 
-def user_choice(user_selection):
-    ask_end = False
-    while not ask_end:
-        user_selection = input("Select Your drink: 'espresso', 'latte' or 'cappuccino': ").lower()
-        ingredients = MENU[user_selection]['ingredients']
-        cost = MENU[user_selection]['cost']
-        updated_resources = update_resources(ingredients)
-    
+should_continue = True
 
-
-def update_resources(selected_ingredients):
-    updated_resources = {key: resources[key] - selected_ingredients.get(key,0)
-                         for key in resources.keys()}
-    for key in updated_resources:
-        if updated_resources[key] < 0:
-            print(f"Sorry, there is not enough {key}")
-    return updated_resources
-
-def calculate_money():
-    cash = {quarter:,
-    dime:, 
-    nicke:, 
-    penny:, }
+while should_continue:
+    options = menu.get_items()
+    choice = input(f"What would you like? ({options}): ")
+    if choice == "off":
+        should_continue = False
+    elif choice == "report":
+        coffee_maker.report()
+        money_machine.report()
+    else:
+        drink = menu.find_drink(choice)
+        if coffee_maker.is_resource_sufficient(drink) and money_machine.make_payment(drink.cost):
+          coffee_maker.make_coffee(drink)
